@@ -5,7 +5,7 @@ This repository includes five files. **SEAsim.R** and **SEAexamples.R** are the 
 
 **SEAsim.R**
 
-This script simulates draws from a skeletal part profile fossil assemblage. These draws are used to calculate simulated MAU-utility relationships, summarized as Spearman's _rho_, Pearsons's _r_, and Poisson regression _beta_ coefficients. A Bayesian version of the regression coefficients are also generated. Teh code summarizes results as both figures and tables that are written to the working directory.
+This script simulates draws from a skeletal part profile fossil assemblage. These draws are used to calculate simulated MAU-utility relationships, summarized as Spearman's _rho_, Pearsons's _r_, and Poisson regression _beta_ coefficients. A Bayesian version of the regression coefficients are also generated. The code summarizes results as both figures and tables that are written to the working directory.
 
 The script uses three common libraries available in CRAN (_ggplot2_, _parallel_, and _patchwork_) and a fourth package--_Rethinking_, which can be installed from https://github.com/rmcelreath/rethinking.
 
