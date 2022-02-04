@@ -9,7 +9,7 @@ This script simulates draws from a skeletal part profile fossil assemblage. Thes
 
 The script uses three common libraries available in CRAN (_ggplot2_, _parallel_, and _patchwork_) and a fourth package--_Rethinking_, which can be installed from https://github.com/rmcelreath/rethinking.
 
-Lines 22-32 include simulation parameters of interest that may be changed by the user. Note, the "nCo" variable, which specifies the number of sample to draw per sample size ("MNE_vals"), is set to a default values of 100,000. This parameter can have significant impacts on script completion time. On a 36-thread machine, the default value resulted in the simulation finishing in 8 days. If running the script on a personal computer with 8 or fewer threads, it is recommended that the "nCo" argument be set at a value below 100.
+Lines 22-32 include simulation parameters of interest that may be changed by the user. Note, the "nCo" variable, which specifies the number of samples to draw per sample size ("MNE_vals"), is set to a default value of 100,000. This parameter can have significant impacts on script completion time. On a 36-thread machine, the default value resulted in the simulation finishing in 8 days. If running the script on a personal computer with 8 or fewer threads, it is recommended that the "nCo" argument be set at a value below 100.
 
 **SEAexamples.R**
 
