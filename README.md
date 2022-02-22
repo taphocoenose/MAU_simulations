@@ -5,9 +5,9 @@ This repository includes five files. **SEAsim.R** and **SEAexamples.R** are the 
 
 **SEAsim.R**
 
-This script simulates draws from a skeletal part profile fossil assemblage. These draws are used to calculate simulated MAU-utility relationships, summarized as Spearman's _rho_, Pearsons's _r_, and Poisson regression _beta_ coefficients. A Bayesian version of the regression coefficients are also generated. The code summarizes results as both figures and tables that are written to the working directory.
+This script simulates draws from a skeletal part profile fossil assemblage. These draws are used to calculate simulated MAU-utility relationships, summarized as Spearman's _rho_, Pearsons's _r_, and Poisson regression _beta_ coefficients. Bayesian versions of the regression coefficients are also generated. The code summarizes results as both figures and tables that are written to the working directory.
 
-The script uses three common libraries available in CRAN (_ggplot2_, _parallel_, and _patchwork_) and a fourth package--_Rethinking_, which can be installed from https://github.com/rmcelreath/rethinking.
+The script uses three libraries available in CRAN (_ggplot2_, _parallel_, and _patchwork_) and a fourth library--_Rethinking_, which can be installed from https://github.com/rmcelreath/rethinking.
 
 Lines 22-32 include simulation parameters of interest that may be changed by the user. Note, the "nCo" variable, which specifies the number of samples to draw per sample size ("MNE_vals"), is set to a default value of 100,000. This parameter can have significant impacts on script completion time. On a 36-thread machine, the default value resulted in the simulation finishing in 8 days. If running the script on a personal computer with 8 or fewer threads, it is recommended that the "nCo" argument be set at a value below 100.
 
