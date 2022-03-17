@@ -9,7 +9,7 @@ This script simulates draws from a skeletal part profile fossil assemblage. Thes
 
 The script uses three libraries available in CRAN (_ggplot2_, _parallel_, and _patchwork_) and a fourth library--_Rethinking_, which can be installed from https://github.com/rmcelreath/rethinking.
 
-Lines 22-32 include simulation parameters of interest that may be changed by the user. Note, the "nCo" variable, which specifies the number of samples to draw per sample size ("MNE_vals"), is set to a default value of 100,000. This parameter can have significant impacts on script completion time. On a 36-thread machine, the default value resulted in the simulation finishing in 8 days. If running the script on a personal computer with 8 or fewer threads, it is recommended that the "nCo" argument be set at a value below 100.
+Lines 22-45 include simulation parameters of interest that may be changed by the user. Note, the "nCo" variable, which specifies the number of samples to draw per sample size ("MNE_vals"), is set to a default value of 10. This parameter can have significant impacts on script completion time. In the accompanying paper, nCo is set to 100,000, which is not recommended for personal computers. On a 36-thread machine, nCo=100,000 resulted in the simulation finishing in 8 days. If running the script on a personal computer with 8 or fewer threads, it is recommended that the "nCo" variable be set at a value below 100. The "n_perMNE" variable also influences script completion times. It specifies the minimum number of simulation iterations to use for plotting per TMNE value. The default default value of 400 should run reasonably quickly in combination with the default nCo value, but script completion times will increase if n_perMNE is raised.
 
 **SEAexamples.R**
 
