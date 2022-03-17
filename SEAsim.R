@@ -1,7 +1,7 @@
 ### Skeletal parts and utility indices ###
 
 # Code authored by Ryan Breslawski (rbreslawski@smu.edu)
-# Last edited in R v 4.0.4 on a Windows 10 machine, Feb 4, 2022
+# Last edited in R v 4.0.4 on a Windows 10 machine, Mar 17, 2022
 
 # CODED FOR PARALLEL PROCESSING (detectCores()-1)
 
@@ -21,15 +21,29 @@ source("SEAsim_PlotFunctions.R")
 
 # Sequence of MNE values over which to simulate correlations
 MNE_vals <- seq(5, 500, by=5)
+
 # Number of simulated correlations per MNE value used to
-# calculate exaggeration ratios and sign errors
-nCo <- 1e3
+# calculate exaggeration ratios and sign error rates. In
+# the accompanying paper, this value is set to 100,000,
+# allowing for high precision in estimates of sign error
+# rates and exaggeration ratio distributions. However, 
+# nCo values of this magnitude are recommended only if 
+# users have access to a computing cluster that allows 
+# programs to run for days or weeks. The default nCo 
+# value of 10 allows for only rough estimates of sign 
+# error rates and exaggeration ratio distributions, but 
+# it is feasible to run the script on most personal 
+# computers.
+nCo <- 10
+
 # Number of simulated correlations to plot per MNE value
 n_perMNE <- 400
+
 # Maximum MNE value to do nCo simulations. Any greater
 # MNE value will only be simulated n_perMNE times for
 # plotting purposes
 MNE_sig_m <- 500
+
 # vector of relationship names
 rnames <- c("Strong","Moderate","Weak","None")
 

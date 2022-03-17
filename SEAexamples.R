@@ -1,7 +1,7 @@
 ### Skeletal parts and utility indices ###
 
 # Code authored by Ryan Breslawski (rbreslawski@smu.edu)
-# Last edited in R v 4.0.4 on a Windows 10 machine, Feb 4, 2022
+# Last edited in R v 4.0.4 on a Windows 10 machine, Mar 17, 2022
 
 # load libraries
 library(ggplot2)
@@ -144,6 +144,11 @@ MorinEtAl_BGR_B <- BayesModel(MEA_BGR, "B_BGRE", "Analyst_B_MNE", "AF")
 MorinEtAl_BGR_D <- BayesModel(MEA_BGR, "D_BGRE", "Analyst_D_MNE", "AF")
 MorinEtAl_BGR_NDE <- BayesModel(MEA_BGR, "NDE_BGRE", "NDE", "AF")
 
+# Extract samples from Manzanilla posteriors to calculate contrast
+Man_pecc_B <- extract.samples(E_Manz_pecc$model)$bu
+Man_cerv_B <- extract.samples(E_Manz_cerv$model)$bu
+Man_con <- quantile(Man_cerv_B - Man_pecc_B, 
+                    probs=c(0.5, 0.025, 0.975))
 
 # Create plots for posterior parameters
 plot_pars_M <- PostParsPlot(list(E_Manz_pecc, E_Manz_cerv), 
