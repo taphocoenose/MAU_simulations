@@ -144,7 +144,7 @@ SimCors <- function(x3, nCor1, simMNE1, MSM, NPM, Bayes){
       beta_Bayes <- map(alist(
         MNE ~ dpois(lambda),
         log(lambda) <- os + a + bu*Utility,
-        a ~ dnorm(0,50),
+        a ~ dnorm(0,5),
         bu ~ dnorm(0,0.01)), data=d, 
         start=list(bu=0, a=0))@coef[1]
       
@@ -345,7 +345,7 @@ SimBones <- function(x1, cDF, MNE_values, nCor, n_per_MNE,
     smodel <- map(alist(
       MNE ~ dpois(lambda),
       log(lambda) <- os + a + bu*Utility,
-      a ~ dnorm(0,50),
+      a ~ dnorm(0,5),
       bu ~ dnorm(0,0.01)), data=sdata, 
       start=list(bu=0, a=0))
     

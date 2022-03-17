@@ -28,7 +28,7 @@ BayesModel <- function(df, MNE_name, Predictor_name, AF_name){
     m<- map(alist(
       MNE ~ dpois(lambda),
       log(lambda) <- os + a + bu*U,
-      a ~ dnorm(0, 50),
+      a ~ dnorm(0, 5),
       bu ~ dnorm(0, 0.01)), data=d,
       start=list(bu=0, a=0))
     
@@ -82,7 +82,7 @@ BayesModel <- function(df, MNE_name, Predictor_name, AF_name){
     m <- map(alist(
       MNE ~ dpois(lambda),
       log(lambda) <- os + a + bu1*U1 + bu2*U2,
-      a ~ dnorm(0, 50),
+      a ~ dnorm(0, 5),
       bu1 ~ dnorm(0, 0.01),
       bu2 ~ dnorm(0, 0.01)), data=d,
       start=list(bu1=0, bu2=0, a=0))
