@@ -1,7 +1,7 @@
 ### Skeletal parts and utility indices ###
 
 # Code authored by Ryan Breslawski (rbreslawski@smu.edu)
-# Last edited in R v 4.0.4 on a Windows 10 machine, Mar 17, 2022
+# Last edited in R v 4.0.4 on a Windows 10 machine, Mar 18, 2022
 
 # CODED FOR PARALLEL PROCESSING (detectCores()-1)
 
@@ -221,7 +221,7 @@ plot_Bayes <- pALLBayes[[1]] + pLBBayes[[1]] + pALLBayes[[2]] +
   pLBBayes[[2]] + pALLBayes[[3]] + pLBBayes[[3]] + pALLBayes[[4]] + 
   pLBBayes[[4]] +  
   plot_layout(design=layout1, heights=c(rep(4, 4), 1))
-ggsave("Figure 8.jpeg", plot=plot_Bayes, device="jpeg", units="in",
+ggsave("Figure 9.jpeg", plot=plot_Bayes, device="jpeg", units="in",
        width=9, height=9, dpi=600)
 
 # Create exaggeration plots
@@ -284,7 +284,7 @@ plot_BSamples <- pbayesALL[[1]] + pbayesLB[[1]] + pbayesALL[[2]] +
   pbayesLB[[2]] + pbayesALL[[3]] + pbayesLB[[3]] + pbayesALL[[4]] + 
   pbayesLB[[4]] +  
   plot_layout(design=layout1, heights=c(rep(4, 4), 1))
-ggsave("Figure 9.jpeg", plot=plot_BSamples, device="jpeg", units="in",
+ggsave("Figure 10.jpeg", plot=plot_BSamples, device="jpeg", units="in",
        width=9, height=9, dpi=600)
 
 # Subset simulation summary data for ease with text description

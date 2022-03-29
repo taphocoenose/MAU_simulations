@@ -1,7 +1,7 @@
 ### Skeletal parts and utility indices ###
 
 # Code authored by Ryan Breslawski (rbreslawski@smu.edu)
-# Last edited in R v 4.0.4 on a Windows 10 machine, Mar 17, 2022
+# Last edited in R v 4.0.4 on a Windows 10 machine, Mar 22, 2022
 
 # load libraries
 library(ggplot2)
@@ -176,18 +176,18 @@ plot_pars_BGRE <- PostParsPlot(list(MorinEtAl_BGR_ANE, MorinEtAl_BGR_D,
                                    MorinEtAl_BGR_NDE), 
                               rep("grey64", 5), "b", TRUE, "Analyst", "none")
 
-ggsave("Figure 10.jpeg", plot_pars_M, "jpeg", width=7, height=2,
+ggsave("Figure 11.jpeg", plot_pars_M, "jpeg", width=7, height=2,
        units="in", dpi=600)
 
 TK_pars_plot <- plot_pars_TEP + plot_pars_TLP + plot_layout(heights=c(2, 2))
 
-ggsave("Figure 12.jpeg", TK_pars_plot, "jpeg", width=7, height=4,
+ggsave("Figure 13.jpeg", TK_pars_plot, "jpeg", width=7, height=4,
        units="in", dpi=600)
 
 
 Analyst_comparison_plot <- plot_pars_MCE + plot_pars_BGRE + plot_layout(nrow=1)
 
-ggsave("Figure 14.jpeg", Analyst_comparison_plot, "jpeg", width=11, height=4,
+ggsave("Figure 15.jpeg", Analyst_comparison_plot, "jpeg", width=11, height=4,
        units="in", dpi=600)
 
 # Create plots for relationships
@@ -205,9 +205,9 @@ Rel_plot_Tel <- Rel_plots[[3]] + Rel_plots[[4]] + Rel_plots[[5]] +
                 Rel_plots[[6]] + Rel_plots[[7]] + Rel_plots[[8]] + 
                 plot_layout(ncol=2)
 
-ggsave("Figure 11.jpeg", Rel_plot_Man, "jpeg", width=9, height=3,
+ggsave("Figure 12.jpeg", Rel_plot_Man, "jpeg", width=9, height=3,
        units="in", dpi=600)
-ggsave("Figure 13.jpeg", Rel_plot_Tel, "jpeg", width=9, height=9,
+ggsave("Figure 14.jpeg", Rel_plot_Tel, "jpeg", width=9, height=9,
        units="in", dpi=600)
 
 # Model comparisons
@@ -239,6 +239,56 @@ allmodelsDF <- do.call("rbind", allmodelsDF)
 
 suppressWarnings(write.csv(allmodelsDF, "Table 8 [part 1].csv", 
                            row.names=FALSE))
+
+# Create plots illustrating hypothetical priors, likelihoods,
+# and posteriors in two data scenarios
+
+# x-grid values to plot distributions
+grid <- seq(-0.07, 0.1, length.out=200)
+
+prior <- dnorm(grid, 0, 0.01)
+prior <- prior/sum(prior)
+
+likelihood <- matrix(ncol=2,
+                     c(dnorm(grid, 0.04, 0.016),
+                     dnorm(grid, 0.024, 0.005)))
+posterior <- sapply(1:2, function(x){
+  ustpost <- likelihood[,x]*prior
+  return(ustpost/sum(ustpost))
+})
+
+prior <- prior/max(posterior)
+posterior <- posterior/max(posterior)
+likelihood <- max(posterior)*(likelihood/max(likelihood))
+
+p <- lapply(1:2, function(i){
+  
+  plt <- ggplot(NULL)+
+    annotate("text", label=letters[i], x=-0.06,
+             y=max(posterior)*0.9)+
+    annotate("segment", x=0.02, xend=0.02, y=Inf, yend=-Inf,
+             color="grey")+
+    annotate("line", x=grid, y=prior, color="blue",
+             linetype="dotted")+
+    annotate("line", x=grid, y=likelihood[,i], color="red",
+             linetype="dashed")+
+    annotate("line", x=grid, y=posterior[,i], color="purple")+
+    scale_y_continuous(limits=c(0,1))+
+    labs(x="Parameter value")+
+    theme(panel.grid=element_blank(), 
+          axis.text.y=element_blank(),
+          panel.background=element_blank(),
+          panel.border=element_rect(fill=NA, color="grey"),
+          axis.ticks.x=element_line(color="grey"),
+          axis.ticks.y=element_blank(),
+          axis.title.y=element_blank())
+  
+  return(plt)
+})
+
+ggsave("Figure 8.jpeg", p[[1]] + p[[2]], "jpeg", 
+       width=7, height=2, units="in", dpi=600)
+
 
 save.image(file="Results_examples.RData")
 
